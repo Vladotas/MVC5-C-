@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/Content/styles.css">
+    <link rel="stylesheet" href="../../Content/Style.css">
     <title>@ViewBag.Title - VapreBro</title>
 </head>
 <body data-spy="scroll" data-offset="116">
@@ -30,10 +30,25 @@
                         </li>
                     </ul>
                 </div>
-        
     </nav>
 
         @RenderBody()
+
+<footer id="footer" class="pb-4 pt-4">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12 col-lg">
+                <a href="https://iefangel.org/2008/08/30/%C2%BFpor-que-el-agua-moja/"target="_blank">Preguntas frecuentes</a>
+            </div>
+            <div class="col-12 col-lg">
+                <a href="https://www.instagram.com/vladotas/ " target="_blank">Contacto</a>
+            </div>
+            <div class="col-12 col-lg">
+                <a href="https://www.instagram.com/vladotas/" target="_blank" >Mi cuenta</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
