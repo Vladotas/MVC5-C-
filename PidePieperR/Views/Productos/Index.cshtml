@@ -1,0 +1,163 @@
+﻿@model IEnumerable<PidePieperR.Models.StockViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h3 class="pager page-header card-title text-center text-theme-0-color">Listado de Productos</h3>
+    @using (Html.BeginForm())
+    {
+        <div class="input-group col-12 mb-3">
+            <div class="input-group-prepend d-none d-sm-block ">
+                <span class="input-group-text">Nomber de la empresa:</span>
+            </div>
+            <input type="text" id="nomEmpresa" name="nomEmpresa" aria-label="Nombre de la Empresa" class="form-control" placeholder="Nombre de la Empresa" value="@ViewBag.nomEmpresa" />
+
+            <div class="input-group-prepend d-none d-sm-block">
+                <span class="input-group-text">Fecha</span>
+            </div>
+            <input type="date" id="fecha" name="fecha" aria-label="Fecha" class="form-control" placeholder="Fecha" value="@ViewBag.fecha" />
+
+            <div class="input-group-prepend d-none d-sm-block">
+                <span class="input-group-text">Nombre del producto:</span>
+            </div>
+            <input type="text" id="nomProducto" name="nomProducto" aria-label="Nombre del producto" class="form-control" placeholder="Nombre del producto" value="@ViewBag.nomProducto" />
+            <button class="btn btn-primary" type="submit">
+                Enter
+            </button>
+        </div>
+    }
+    <div class="table-cont" >
+        <table class="table table-sm table-striped table-hover" >
+            <thead class="bg-dark text-light ">
+                <tr>
+                    <th>
+                        @Html.ActionLink("Nombre Empresa","Index",new {nombreEmpresaSort = " " },new { @class="nav-link"})
+                    </th>
+                    <th>
+                        @Html.ActionLink("Cantidad", "Index", new { cantidadSort = " " }, new { @class = "nav-link" })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Fecha", "Index", new { fechaSort = " " }, new { @class = "nav-link" })
+                    </th>
+                    <th>
+                        @Html.Raw("<a href='#' class='nav-link' title='NombreProducto'>Nombre Producto</a>")
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                        @Html.Raw("<a data-modal='' href='/Productos/Create' title='Create'> <span class='btn btn-primary far fa-clone'> </span> </a>")
+                    </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    //var iterator = 0;
+                    foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NombreEmpresa)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cantidad)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Fecha)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NombreProducto)
+                            </td>
+
+                            @if (item.Stock == false)
+                            {
+                                <td>
+                                    @Html.DisplayNameFor(model => model.Stock)
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                </td>
+                            }
+                            <td>
+                                @Html.Raw("<a href='#' 'id=" + item.Id + "' onclick='Delete(" + item.Id + ")' title='Delete'> <span class='fa fa-trash '> </span> </a>")
+                            </td>
+                            <td>
+                                @Html.Raw("<a data-modal='' href='/Productos/Edit/" + item.Id + "' id='" + item.Id + "'' title='Edit'> <span class='far fa-edit '> </span> </a>")
+                            </td>
+                            
+                            <td>
+                                @Html.Raw("<a data-modal='' href='/Productos/Info/" + item.Id + "' id='" + item.Id + "'' title='Info'> <span class='fa fa-info'> </span> </a>")
+                            </td>
+                            <td>
+
+                            </td>
+
+                        </tr>
+
+                        //iterator++;
+                    }
+                    
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        var nombreEmpresaSort = " ";
+        function List() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("Index","Productos")',
+                data: {nombreEmpresaSort : nombreEmpresaSort},
+                success: function () {
+                    alert("BIEN BREO");
+                    location.reload();
+                },
+                error: function () {
+                    alert("MAL PERRO");
+                    location.reload();
+                },
+            });
+        }
+
+        function Delete(id) {
+            var conf = "obvio perri";
+            alert("Are you sure about that BREEEEO")
+            var resp = prompt(`Bueno, para confirmar escriba '${conf}'`)
+            if (resp == conf) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Delete","Productos")',
+                    data: { id: id },
+                    success: function (result) {
+                        location.reload();
+                    },
+
+                });
+            } else {
+                alert("CAGÓN")
+            }
+        }
+
+    </script> 
+}

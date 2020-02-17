@@ -1,0 +1,72 @@
+﻿@model IEnumerable<PidePieperR.Models.StockViewModel>
+@{
+    ViewBag.Title = "Info";
+}
+
+    <div class="container">
+        <h3 class="pager page-header card-title text-center text-theme-0-color">Info Producto</h3>
+        <div class="table-cont">
+            <table class="table table-sm table-striped table-hover">
+                <thead class="bg-dark text-light ">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NombreEmpresa)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cantidad)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Fecha)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NombreProducto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NombreEmpresa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cantidad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fecha)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NombreProducto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                </td>
+
+                                @if (item.Stock == false)
+                                {
+                                    <td>
+                                        @Html.DisplayNameFor(model => model.Stock)
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <a href="javascript:history.back()" class="btn btn-success">Volver</a>
+    </div>
+

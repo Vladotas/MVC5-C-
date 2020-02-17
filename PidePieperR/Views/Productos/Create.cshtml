@@ -1,0 +1,84 @@
+﻿@model PidePieperR.Models.NuevoStockViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <h3 class="pager page-header card-title text-center text-theme-0-color">Agregar Producto</h3>
+        <div class="pager page-header card-title text-center text-theme-0-color">
+            @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger " })
+        </div>
+        <div class="pager page-header card-title text-center text-theme-0-color">
+            @Html.ValidationMessageFor(model => model.Empresas, "", new { @class = "text-danger " })
+        </div>
+            <div class="input-group col-12 mb-3">
+                <form>
+
+                    <div class="dropdown">
+
+                        @Html.DropDownList("Empresas", new SelectList(Model.Empresas, "id_Empresa", "NombreEmpresa"), "Empresas", htmlAttributes: new { @class = "form-control" })
+
+                        @*Html.DropDownListFor(model => model.Empresas, new SelectList(Model.Empresas, "id_Empresa", "NombreEmpresa"), "Empresas", htmlAttributes: new { @class = "form-control" })*@
+
+                    </div>
+
+                    <div class="dropdown">
+
+                        @*Html.DropDownList("Produtos", new SelectList(string.Empty, "value", "text"), "Productos", htmlAttributes: new { @class = "form-control" })*@
+                        @Html.DropDownListFor(model => model.Productos, new SelectList(string.Empty, "value", "text"), "Productos", htmlAttributes: new { @class = "form-control" })
+
+                    </div>
+
+                    <div class="input-group-prepend d-none d-sm-block">
+                        <span class="input-group-text">Cantidad:</span>
+                    </div>
+
+                    <input type="text" id="cantidad" name="cantidad" aria-label="cantidad" class="form-control" placeholder="cantidad" />
+                    <button class="btn btn-primary" type="submit">
+                        Enter
+                    </button>
+
+                </form>
+                <a href="/Productos/Index" class="btn btn-success">Volver</a>
+            </div>
+
+        </div>
+        }
+
+
+        @section Scripts
+        {
+            <script type="text/javascript">
+
+                $(document).ready(function () {
+
+                    $("#Empresas").change(function () {
+                        $("#Productos").empty();
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("Combo","Productos")',
+                            datatype: 'json',
+                            //contentType: "application/json; charset=utf-8",
+                            data: { id: $("#Empresas").val() },
+                            success: function (data) {
+                                var id = $("#Empresas").val();
+                                //alert(data);
+                                //$.each(data, function (i, type) {
+                                    var content = '<option value="' + id + '">' + data + '</option>';
+
+                                    $("#Productos").append(content);
+                                //});
+                            },
+                        });
+                    });
+                });
+
+
+            </script>
+        }
+
