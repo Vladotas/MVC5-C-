@@ -1,4 +1,5 @@
 ﻿body {
+
     background: #f5f6fa;
 }
 
@@ -11,6 +12,7 @@
     object-fit: cover;
     filter: grayscale(70%);
 }
+
 
 #overlay {
     position: relative;
@@ -29,10 +31,8 @@
 .masthead {
     position: fixed;
     color: white;
-
     width: 100%;
     height: 100%;
-
     background: url('../../Content/Homee3.jpg');
     background-position: center center;
     background-repeat: no-repeat;
@@ -55,3 +55,210 @@
     #footer a {
         color: white;
     }
+
+
+.coco {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #031321;
+}
+
+.loader {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(#14ffe9, #ffeb3d, #ff00e0);
+    animation: animate 0.5s linear infinite;
+}
+
+    .loader span {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(#14ffe9, #ffeb3d, #ff00ffe0);
+        animation: animate 0.5s linear infinite;
+    }
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader span:nth-child(1) {
+    filter: blur(5px);
+}
+
+.loader span:nth-child(2) {
+    filter: blur(10px);
+}
+
+.loader span:nth-child(3) {
+    filter: blur(25px);
+}
+
+.loader span:nth-child(4) {
+    filter: blur(50px);
+}
+
+.loader:after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    background: #031321;
+    border-radius: 50%;
+}
+
+ul
+{
+margin:0;
+padding:0;
+display: flex;
+}
+
+ul li
+{
+list-style:none;
+margin:0 20px;
+transition: 0.5s;
+}
+
+ul li a
+{
+    display: block;
+    position: relative;
+    text-decoration:none;
+    padding: 5px;
+    font-size:18px;
+    font-family:sans-serif;
+    color:#fff;
+    text-transform: initial;
+    transition: 0.5s;
+
+}
+
+ul:hover li a 
+{
+     transform: scale(1.5);
+     opacity: .2;
+     filter: blur(5px);
+}
+
+    ul li a:hover {
+        transform: scale(1.5);
+        opacity: 1;
+        filter: blur(0);
+    }
+    ul li a:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #53CA31;
+        transition: transform 0.5s;
+        transform-origin: right;
+        transform: scaleX(0);
+        z-index: -1;
+    }
+    ul li a:hover:before
+    {
+        transition: transform 0.5s;
+        transform-origin: left;
+        transform: scaleX(1);
+    }
+
+    .bot
+    {
+        position: relative;
+        display: inline-block;
+        padding: 15px 30px;
+        color: #2196f3;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        text-decoration: none;
+        font-size: 24px;
+        overflow: hidden;
+        transition: 0.2s;
+    }
+
+    .bot:hover
+    {
+        color: #255784;
+        background: #2196f3;
+        box-shadow: 0 0 10px #2196f3, 0 0  40px #2196f3, 0 0 80px #2196f3;
+        transition-delay: 1s;
+    }
+    a span
+    {
+        position: absolute;
+        display: block;
+    }
+        a span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg,transparent,#2196f3);
+        }
+        a:hover span:nth-child(1)
+        {
+            left: 100%;
+            transition: 1s;
+        }
+
+        a span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg,transparent,#2196f3);
+        }
+
+        a:hover span:nth-child(3) {
+            right: 100%;
+            transition: 1s;
+            transition-delay: 0.5s;
+        }
+
+        a span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg,transparent,#2196f3);
+        }
+
+        a:hover span:nth-child(2) {
+            top: 100%;
+            transition: 1s;
+            transition-delay: 0.25s;
+        }
+
+        a span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg,transparent,#2196f3);
+        }
+
+        a:hover span:nth-child(4) {
+            bottom: 100%;
+            transition: 1s;
+            transition-delay: 0.75s;
+        }
